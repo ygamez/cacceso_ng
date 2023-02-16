@@ -1,0 +1,42 @@
+<mat-card>
+  <mat-card-title>Inicio de sesión</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="formlogin" (ngSubmit)="onSubmit(formlogin.value)">
+      <p>
+        <mat-form-field>
+          <input #user
+            type="text"
+            matInput
+            placeholder="Usuario"
+            formControlName="user"
+          />
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field>
+          <input #pass
+            type="password"
+            matInput
+            placeholder="Contraseña"
+            formControlName="pass"
+          />
+        </mat-form-field>
+      </p>
+
+      <p *ngIf="errores" class="error">
+        {{ errores }}
+      </p>
+
+      <!--<div *ngIf="errores">-->
+      <!--<mat-card class="card-content">-->
+      <!--{{errores}}-->
+      <!--</mat-card>-->
+      <!--</div>-->
+
+      <div class="button">
+        <button  [disabled]="! formlogin.valid || formSubmitted" type="submit" color="primary" mat-raised-button>Aceptar</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

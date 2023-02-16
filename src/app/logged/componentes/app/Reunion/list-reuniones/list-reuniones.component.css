@@ -1,0 +1,13 @@
+button.salio   {
+  color: red;
+}
+button.noSalio   {
+  color: green;
+}
+
+h2.salio {
+  color: red;
+}
+h2.nosalio {
+  color: black;
+}

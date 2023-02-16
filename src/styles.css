@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+/* @import "~@angular/material/prebuilt-themes/deeppurple-amber.css"; */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+/* @import "~@angular/material/prebuilt-themes/pink-bluegrey.css"; */
+/* @import "~@angular/material/prebuilt-themes/purple-green.css"; */
+@import '~material-design-icons/iconfont/material-icons.css';
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+.centrarTodo{
+  position: relative; text-align: center
+}
+table {
+  width: 100%;
+}
+.error {
+  /* padding: 16px;
+  width: 300px; */
+  color: red;
+  /* background-color: red; */
+}
+

@@ -1,0 +1,30 @@
+<mat-card>
+  <mat-card-content>
+    <div *ngIf="listaVisitantes">
+      <div class="centrarTodo">
+        <h3>Detalles del Visitante</h3>
+      </div>
+      <div>
+        <p >CI: {{ listaVisitantes.dpersonales.ci }}</p>
+        <p>Nombre: {{ listaVisitantes.dpersonales.nombre }}</p>
+        <p>Primer apellido: {{ listaVisitantes.dpersonales.apellido1 }}</p>
+        <p>Segundo apellido: {{ listaVisitantes.dpersonales.apellido2 }}</p>
+
+        <p>Hora de registro: {{ listaVisitantes.horaReg }}</p>
+        <p>Hora de salida: {{ listaVisitantes.horaSali }}</p>
+      </div>
+    </div>
+    <div class="centrarTodo">
+      <h3>Lista de equipos</h3>
+    </div>
+    <p>----------------------------------------------------</p>
+    <div *ngFor="let equipo of listaVisitantes.listaEquipos">
+
+      <p>Id: {{equipo.idEquipo}}</p>
+      <p>Tipo de equipo: {{equipo.tipoEquipo}}</p>
+      <p># de serie: {{equipo.numSerie}}</p>
+      <p>----------------------------------------------------</p>
+    </div>
+  </mat-card-content>
+</mat-card>
+

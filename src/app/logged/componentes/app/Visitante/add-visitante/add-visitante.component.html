@@ -1,0 +1,176 @@
+<br />
+<div class="centrarTodo">
+  <h2>{{ titulo }}</h2>
+</div>
+
+<mat-card>
+  <!-- <mat-card-title>Inicio de sesión</mat-card-title> -->
+  <mat-card-content>
+    <form [formGroup]="regitroformGroup" (ngSubmit)="onSubmit()" >
+      <p>
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            placeholder="Organismo"
+            formControlName="organismo"
+          />
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            placeholder="Entidad"
+            formControlName="entidad"
+          />
+        </mat-form-field>
+      </p>
+
+      <div class="centrarTodo">
+        <h2>Datos personales</h2>
+      </div>
+
+      <div class="centrarTodo">
+        <button
+          (click)="buscarCi()"
+          [disabled]="!regitroformGroup.controls['ci'].valid || ciSubmitted"
+          type="button"
+          color="primary"
+          mat-raised-button
+        >
+          Buscar Ci
+        </button>
+      </div>
+
+      <p>
+        <mat-form-field >
+          <input
+            type="text"
+            (blur)="ciOnBlur()"
+            maxlength="11"
+            (keypress)="SoloNumeros($event)"
+            (paste)="(false)"
+            matInput
+            placeholder="Ci"
+            formControlName="ci"
+          />
+          <mat-hint
+            >Escribir carnet de identidad y dar click en el boton "Buscar
+            ci"</mat-hint
+          >
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            placeholder="Nombre"
+            formControlName="nombre"
+          />
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            placeholder="segundo Nombre"
+            formControlName="nombre2"
+          />
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            placeholder="Primer apellido"
+            formControlName="apellido1"
+          />
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            placeholder="Segundo apellido"
+            formControlName="apellido2"
+          />
+        </mat-form-field>
+      </p>
+
+      <div class="centrarTodo">
+        <h2>Equipos</h2>
+      </div>
+
+      <div>
+        <div class="demo-button-container">
+          <!-- <button mat-raised-button  (click)="addData()"  [disabled]="ciOK"  class="demo-button"> -->
+          <button
+            mat-raised-button
+            (click)="addData()"
+            [disabled]="ciOK || agregandoEquipo"
+            type="button"
+            class="demo-button"
+          >
+            Agregar equipo
+          </button>
+          <button
+            mat-raised-button
+            (click)="removeData()"
+            type="button"
+            class="demo-button"
+          >
+            Eliminar equipo
+          </button>
+
+          <!-- <button
+            mat-raised-button  [disabled]="!dataSource.length"
+            (click)="removeData()"
+            class="demo-button">
+          Remove data
+        </button> -->
+        </div>
+        <div *ngIf="nomostrar; else elelse">
+          <app-add-equipo (elEquipo)="elObjetoEquipo($event)"></app-add-equipo>
+        </div>
+        <ng-template #elelse>
+          <app-list-visitantes
+            [datosEquipo]="datosEquipo"
+            (onMouseClick)="onClickHandler($event)"
+            [events]="eventsSubjectEliminarEquipo.asObservable()"
+          ></app-list-visitantes>
+        </ng-template>
+      </div>
+
+      <div *ngIf="cargando"  style="height: 25px;  ">
+        <mat-spinner  style=" margin: 0 auto; color: skyblue;  "></mat-spinner>
+      </div>
+
+
+      <p *ngIf="errores" class="error">
+        {{ errores }}
+      </p>
+
+      <div class="centrarTodo">
+        <button
+          [disabled]="!regitroformGroup.valid || formSubmitted || ciOK"
+          type="submit"
+          color="primary"
+          mat-raised-button
+        >
+          Guardar
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

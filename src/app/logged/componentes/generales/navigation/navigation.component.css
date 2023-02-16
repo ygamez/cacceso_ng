@@ -1,0 +1,51 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.example-spacer {
+  flex: 1 1 auto;
+}
+.inline {
+  /*padding: 16px;*/
+  /*width: 300px;*/
+  color: green;
+  text-align: left ;
+  font-size: small;
+  /*background-color: red;*/
+}
+.fueraLine {
+  /*padding: 16px;*/
+  /*width: 300px;*/
+  color: black;
+  text-align: justify ;
+  font-size: small;
+
+  /*background-color: red;*/
+}
+.texto
+{
+  text-align: justify ;
+  font-size: small;
+}
+
+
+
+.toolbar{
+  color: white;
+  background-color: #FF3366;
+  display: flex;
+  justify-content: center;
+}

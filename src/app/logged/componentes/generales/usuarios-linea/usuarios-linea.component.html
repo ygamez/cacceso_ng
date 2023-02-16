@@ -1,0 +1,15 @@
+<div style="position: relative; text-align: center">
+  <h2>LISTA DE USUARIOS EN LINEA </h2>
+</div>
+
+
+<mat-selection-list #usuario [multiple]="false">
+  <mat-list-option *ngFor="let usuario of listaUserConnected" [value]="usuario">
+    {{usuario}}
+  </mat-list-option>
+</mat-selection-list>
+
+<!-- <p>
+  Option selected: {{usuario.selectedOptions.selected[0]?.value}}
+</p> -->
+

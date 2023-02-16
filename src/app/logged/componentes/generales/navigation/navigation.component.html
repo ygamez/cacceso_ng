@@ -1,0 +1,93 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar class="toolbar" >
+      Menu
+      <div>
+        <img style="height: 50px" src="./assets/logo.png" alt="TrabajarEnCuba" routerLink="/home" >
+      </div>
+    </mat-toolbar>
+    <mat-nav-list>
+      <div *ngIf="_tipoUser ==='1' ;else elss">
+        <!-- <a mat-list-item routerLink="/home/">Link 1</a> -->
+        <a mat-list-item routerLink="/home/reuniones">Reuniones</a>
+
+      </div>
+      <ng-template #elss>
+        <!-- <a mat-list-item routerLink="/home/">Link 1</a> -->
+        <a mat-list-item routerLink="/home/addEditReunion">Crear reunión</a>
+        <a mat-list-item routerLink="/home/listreunionuser">Reuniones creadas </a>
+        <!-- <a mat-list-item routerLink="/home/userlinea">Usuarios en linea</a> -->
+      </ng-template>
+
+      <a mat-list-item routerLink="/home/userlinea">Usuarios en linea</a>
+<!--
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              informes
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <a mat-button routerLink="/home/reuniones">
+            <mat-icon>menu</mat-icon>
+            Lista de reuniones
+          </a>
+        </mat-expansion-panel>
+        <mat-expansion-panel >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              otra cosa
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+          <p>I'm visible because I am open</p>
+        </mat-expansion-panel>
+      </mat-accordion> -->
+
+
+
+      <a mat-list-item (click)="logout()">
+        <mat-icon matTooltip="Cerrar">
+            exit_to_app
+        </mat-icon>
+      </a>
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>
+        CONTROL DE ACCESO
+        <br>
+        <h6 class="texto">Usuario: {{fullNAme}}</h6>
+      </span>
+
+      <span class="example-spacer"></span>
+      <span  *ngIf="inline ;else elelse" class="inline">En linea</span>
+      <ng-template #elelse>
+        <span  class="fueraLine" >Desconectado</span>
+      </ng-template>
+
+
+      <!-- <p *ngIf="errores" class="error">
+        {{ errores }}
+      </p> -->
+    </mat-toolbar>
+    <!-- Add Content Here -->
+
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

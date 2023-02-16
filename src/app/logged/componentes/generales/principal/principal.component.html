@@ -1,0 +1,22 @@
+
+<mat-toolbar color="primary">
+  <!-- <button mat-icon-button>
+    <mat-icon > menu </mat-icon>
+    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+
+  </button> -->
+
+  <div>
+    <img style="height: 50px" class="img-fluid" src="./assets/logo.png" alt="TrabajarEnCuba">
+  </div>
+  <!-- <span> Angular material</span> -->
+  <div>
+    <!-- <button mat-button (click)="cerrar()" >cerrar </button> -->
+    <a href="" routerLink="/login" *ngIf="!usuarioLogueado">Login</a>
+    <a (click)="logout()"   style="cursor: pointer ;" *ngIf="usuarioLogueado">Logout</a>
+  </div>
+
+
+</mat-toolbar>
+<!-- <router-outlet></router-outlet> -->
+

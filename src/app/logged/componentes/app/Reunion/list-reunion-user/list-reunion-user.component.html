@@ -1,0 +1,145 @@
+<div style="position: relative; text-align: center">
+  <h2 style="color: red" *ngIf="errores">{{ errores }}</h2>
+</div>
+
+<div *ngIf="cargando"  style="height: 25px;  ">
+  <mat-spinner  style=" margin: 0 auto; color: skyblue;  "></mat-spinner>
+</div>
+
+<br />
+<div style="position: relative; text-align: center">
+  <h2 *ngIf="datosReunion">LISTA REUNIONES CREADAS </h2>
+</div>
+<div style="position: relative; text-align: center">
+  <!-- <h3>Nit:{{ onat.Cliente.nit }}</h3>
+
+  <h3>Nombre:{{ onat.Cliente.nombre_completo }}</h3> -->
+
+  <!-- <h3>rc05:{{ onat.Cliente.rc05 }}</h3> -->
+</div>
+
+<div *ngIf="datosReunion">
+  <!--
+    <mat-expansion-panel *ngIf="datosReunion">
+      <mat-expansion-panel-header>
+        <mat-panel-description>
+          <h2>DATOS </h2>
+        </mat-panel-description>
+      </mat-expansion-panel-header> -->
+
+  <div>
+    <div *ngFor="let  c   of datosReunion">
+      <br />
+      <div style="position: relative; text-align: center">
+        Dirección : {{ c.direccion }}
+        <br />
+        Tema: {{ c.tema }}
+      </div>
+
+      <br />
+      <mat-accordion>
+        <mat-expansion-panel >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <!-- <p>Fecha de pago: {{ c.fecha_pago }}</p> -->
+            </mat-panel-title>
+            <mat-panel-description
+              style="position: relative; text-align: center"
+            >
+
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div style="position: relative; text-align: center">
+            <button  #enviar  [routerLink]="'/home/addEditReunion/'+c.idReunion"
+             mat-raised-button color="primary">Modificar</button>
+
+            <button #enviar mat-raised-button color="primary" (click)="eliminarReunion(c.idReunion)" >Eliminar</button>
+
+            <button [ngClass]="{'salio': c.cancel ,'noSalio': !c.cancel}" #enviar mat-raised-button color="primary" (click)="cancelReu(dialogTemlate)">Cancelar</button>
+
+            <ng-template #dialogTemlate>
+
+              <div>
+                <form [formGroup]="cancelformGroup" (ngSubmit)="onSubmit(c.idReunion)" >
+
+                  <p>
+                    <mat-form-field style="width: 100%;">
+                      <input
+                        type="text"
+                        matInput
+                        placeholder="Motivo Cancelación"
+                        formControlName="mcancel"
+                      />
+                    </mat-form-field>
+                  </p>
+
+
+                <p *ngIf="errores" class="error">
+                  {{ errores }}
+                </p>
+
+                  <div class="centrarTodo">
+                    <button
+                      [disabled]="!cancelformGroup.valid "
+                      type="submit"
+                      color="primary"
+                      mat-raised-button
+                    >
+                      Guardar
+                    </button>
+                  </div>
+
+                </form>
+              </div>
+
+            </ng-template>
+
+
+          </div>
+          <br />
+          <div *ngIf="c.cancel"  style="position: relative; text-align: center">
+            <p>Motivo Cancelación: {{c.mcancel}} </p>
+          </div>
+          <p>Fecha: {{ c.fecha }}</p>
+          <p>Hora: {{ c.hora }}</p>
+          <p>Usuario Responsable: {{ c.nomUsuarioResp }}</p>
+
+          <div *ngIf="c.listaVisitantes">
+            <div style="position: relative; text-align: center">
+              <h2>Visitantes</h2>
+            </div>
+            <div *ngFor="let item of c.listaVisitantes">
+              <div *ngIf="item.idReunion === c.idReunion">
+
+                <p>{{ item.dpersonales.ci + ' '  + ' - ' + ' '+ item.dpersonales.nombre +' ' + item.dpersonales.apellido1  + ' - Hora de Salida: ' +item.horaSali }}
+
+                   <!-- <button  mat-raised-button color="primary"
+                   [routerLink]="'/home/reuniones/'+c.idReunion +'/addEditVisitante/'+ item.idVisitante"
+                   >Editar </button>
+
+                     <button  mat-raised-button color="primary"
+                     [routerLink]="c.idReunion +'/'+ item.idVisitante +'/detallesVisitante'">detalles
+                     </button>
+
+                     <button  [ngClass]="{'salio': item.horaSali ,'noSalio': !item.horaSali}" color="primary"  mat-raised-button
+                     >Salida
+                     </button> -->
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!--
+          <p>Nombre: {{ c.nombre_impuesto }}</p>
+          <p>Importe: {{ c.importe }}</p>
+          <p>Boni. pago electrónico: {{ c.bonificacion_pago_electronico }}</p>
+          <p>Boni. pronto pago: {{ c.bonificacion_pronto_pago }}</p>
+          <p>Cnal pago: {{ c.canal_pago }}</p> -->
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+  <!-- </mat-expansion-panel> -->
+</div>
+
