@@ -1,6 +1,9 @@
 import { JwtRespuesta } from '../../modelos/jwt-respuesta';
 import { CUserInfo } from '../../modelos/cuser-info';
 import { AuthenticationService } from '../../servicios/authentication.service';
+
+import Swal from "sweetalert2";
+
 import {
   Component,
   OnInit,
@@ -75,8 +78,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   initForm() {
     this.formlogin = this.fb.group({
-      user: new FormControl('', Validators.required),
-      pass: ['', Validators.required],
+      nombre: new FormControl('stringRole@gmail.com', Validators.required),
+      password: ['stringRole12345!', Validators.required],
     });
     // console.log(this.sha1.sync('hey there'))
   }
@@ -84,16 +87,18 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   routerRedirect='';
 
-
+  'debugger'
   onSubmit(valores: CUserInfo) {
     this.formSubmitted = true;
-    this.bloquearControles(true);
+    // this.bloquearControles(true);
     this.routerRedirect='';
+    // console.log("entro");
 
     if (this.formlogin.valid) {
+      console.log("entro");
       // validaciones aqui
       // convirtiendo a base64
-       valores.pass=btoa(valores.pass);
+      //  valores.pass=btoa(valores.pass);
 
       //  console.log(valores);
 
@@ -124,14 +129,10 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.formSubmitted = false;
           this.bloquearControles(false);
        },()=>{
-
          // console.error('eFINAL');
           this.formSubmitted = false;
           this.bloquearControles(false);
         }) ;
-
-
-
     }
 
     // this.bloquearControles(false);
@@ -148,5 +149,33 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.userSubcription.unsubscribe();
   }
    // throw new Error('Method not implemented.');
+  }
+
+  login (){        
+
+    // this.authService.validarToken()
+    //     .subscribe( resp => console.log( resp ));
+    // console.log(this.formlogin.value);
+
+    const { nombre, password } = this.formlogin.value;
+
+    this.auth.loginYariel( nombre, password )
+    .subscribe( ok =>{
+      //  console.log(ok)
+      if ( ok === true ){
+        this.router.navigateByUrl('/home');
+      }
+      else {
+        //TODO: mostrar msj de error
+        Swal.fire('Revise', ok, 'error') 
+      }
+    })
+  }
+
+   
+
+  ingresarSinLogin() {
+    this.auth.logout();
+    this.router.navigate(['./home']);
   }
 }

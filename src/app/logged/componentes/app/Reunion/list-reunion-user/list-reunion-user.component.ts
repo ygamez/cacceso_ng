@@ -54,37 +54,37 @@ export class ListReunionUserComponent implements OnInit {
 
 
  cancelReu(templateRef){
-  //cancelReunion
+    //cancelReunion
 
-  this.cancelformGroup = this.formBuilder.group({
-    mcancel:['',[Validators.required]],
+    this.cancelformGroup = this.formBuilder.group({
+      mcancel:['',[Validators.required]],
 
-  });
+    });
 
-   this. dialogRef=this.dialog.open(templateRef,{
-    width:'250px',
-    // height: '250px'
-  })
+    this. dialogRef=this.dialog.open(templateRef,{
+      width:'250px',
+      // height: '250px'
+    })
 
-  this. dialogRef.afterClosed().subscribe(result=>{
-    console.log('dialog cerrado');
-  });
+    this. dialogRef.afterClosed().subscribe(result=>{
+      console.log('dialog cerrado');
+    });
 
 
 
-    // var can=new CancelReuni
-    // can.id=idreunion;
-    // can.mcancel='Prueba de cancelación';
+      // var can=new CancelReuni
+      // can.id=idreunion;
+      // can.mcancel='Prueba de cancelación';
 
-  //  this.servicioGeneral.cancelReunion(can).subscribe(()=>{
+    //  this.servicioGeneral.cancelReunion(can).subscribe(()=>{
 
-  //   this.cargarListaReuniones();
+    //   this.cargarListaReuniones();
 
-  //  },err=>{
-  //   this.errores=err.message;
-  //  })
+    //  },err=>{
+    //   this.errores=err.message;
+    //  })
 
- }
+  }
 
  onSubmit(idreunion){
 

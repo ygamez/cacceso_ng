@@ -1,7 +1,7 @@
 import { environment } from '../../../environments/environment';
 import { JwtRespuesta } from '../modelos/jwt-respuesta';
-import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
-import { CUserInfo } from '../modelos/cuser-info';
+import { BehaviorSubject, catchError, map, Observable, of, Subject, tap } from 'rxjs';
+import { AuthResponse, CUserInfo } from '../modelos/cuser-info';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -17,6 +17,10 @@ const Full_NAME='nombrecompleto';
 })
 export class AuthenticationService {
   private mensajeService =new MensajeService(this);
+
+  private baseUrl: string = environment.backend;
+  private _usuario: AuthResponse | undefined ;
+
   constructor(
     private http: HttpClient,
     private router : Router,
@@ -56,7 +60,8 @@ export class AuthenticationService {
 
   login(usuario: CUserInfo): Observable<JwtRespuesta> {
     return this.http
-      .post<JwtRespuesta>(environment.backend + '/Seguridad/login', usuario)
+    // .post<JwtRespuesta>('https://localhost:44392/Account/login', usuario)
+      .post<JwtRespuesta>(environment.backend + '/Account/login', usuario)
       .pipe(
         tap((resp: JwtRespuesta) => {
           // console.log('respuesta', resp);
@@ -81,6 +86,33 @@ export class AuthenticationService {
           });
         })
       );
+  }
+
+  loginYariel( nombre: string, password : string ){
+
+    const url = `${ this.baseUrl }/Account/login`;
+    const body = { nombre, password };
+
+    return this.http.post<AuthResponse>( url, body)
+        .pipe(
+          tap( resp =>
+             {
+              if (resp.ok){
+                localStorage.setItem( 'token', resp.token );
+                // localStorage.setItem( 'x-token', resp.refreshToken );
+                this._usuario =
+                {
+                  ok:     resp.ok ,
+                  id:     resp.id ,
+                  nombre: resp.nombre ,
+                  token:  resp.token ,
+                  tipo:   resp.tipo ,
+                }
+              }
+              }),
+          map( resp => resp.ok ),
+          catchError( err => of( err.error.message ) )
+        )
   }
 
   cambioStatus(valor: boolean ){
