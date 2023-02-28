@@ -56,10 +56,10 @@ export class NavigationComponent  implements OnInit {
     //   texto: 'Crear reunión',
     //   ruta: '/home/addEditReunion'
     // },
-    {
-      texto: 'Reuniones creadas',
-      ruta: '/home/listreunionuser'
-    },
+    // {
+    //   texto: 'Reuniones creadas',
+    //   ruta: '/home/listreunionuser'
+    // },
     {
       texto: 'Usuarios en linea',
       ruta: '/home/userlinea'
