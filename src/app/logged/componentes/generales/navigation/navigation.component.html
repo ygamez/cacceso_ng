@@ -1,28 +1,56 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
+<!-- <mat-sidenav-container class="sidenav-container">  -->
+<mat-sidenav-container class="navbar navbar-expand-lg bg-body-tertiary"> 
+  <mat-sidenav #drawer class="navbar navbar-expand-lg bg-body-tertiary" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar class="toolbar" >
+    <mat-toolbar class="toolbar sidenav mat-toolbar" >
       Menu
       <div>
         <img style="height: 50px" src="./assets/logo.png" alt="TrabajarEnCuba" routerLink="/home" >
       </div>
     </mat-toolbar>
-    <mat-nav-list>
-      <div *ngIf="_tipoUser ==='1' ;else elss">
+
+    <hr>
+
+    <ul class="list-group">
+
+        <li  *ngIf="_tipoUser ==='0'"
+            class="list-group-item"
+            routerLink="/home/addEditReunion"
+            routerLinkActive="active">
+            Crear Reunión
+        </li>
+     
+        <li *ngFor="let item of templateMenu" 
+            class="list-group-item"
+            [routerLink]="[ item.ruta ]"
+            routerLinkActive="active">
+            {{ item.texto }}
+        </li>
+        
+        <li class="list-group-item"
+            (click)="logout()"
+            routerLinkActive="active">
+            Salir
+        </li>
+    
+    </ul>
+
+    <!-- <mat-nav-list>
+      <div *ngIf="_tipoUser ==='1' ;else elss"> -->
         <!-- <a mat-list-item routerLink="/home/">Link 1</a> -->
-        <a mat-list-item routerLink="/home/reuniones">Reuniones</a>
+        <!-- <a mat-list-item routerLink="/home/reuniones">Reuniones</a>
 
       </div>
-      <ng-template #elss>
+      <ng-template #elss> -->
         <!-- <a mat-list-item routerLink="/home/">Link 1</a> -->
-        <a mat-list-item routerLink="/home/addEditReunion">Crear reunión</a>
-        <a mat-list-item routerLink="/home/listreunionuser">Reuniones creadas </a>
+        <!-- <a mat-list-item routerLink="/home/addEditReunion">Crear reunión</a>
+        <a mat-list-item routerLink="/home/listreunionuser">Reuniones creadas </a> -->
         <!-- <a mat-list-item routerLink="/home/userlinea">Usuarios en linea</a> -->
-      </ng-template>
+      <!-- </ng-template>
 
-      <a mat-list-item routerLink="/home/userlinea">Usuarios en linea</a>
+      <a mat-list-item routerLink="/home/userlinea">Usuarios en linea</a> -->
 <!--
       <mat-accordion>
         <mat-expansion-panel hideToggle>
@@ -49,16 +77,16 @@
 
 
 
-      <a mat-list-item (click)="logout()">
+      <!-- <a mat-list-item (click)="logout()">
         <mat-icon matTooltip="Cerrar">
             exit_to_app
         </mat-icon>
       </a>
 
-    </mat-nav-list>
+    </mat-nav-list> -->
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar color="primary" class="toolbarcenter" >
 
       <button
         type="button"
@@ -91,3 +119,6 @@
 
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+
+<!--  -->

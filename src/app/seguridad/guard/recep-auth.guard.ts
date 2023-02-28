@@ -16,11 +16,11 @@ export class RecepAuthGuard implements CanActivate {
 
 
       if(this.Au.tipoUserSubject.value ==="1"){
-        // console.log('RecepAuthGuard      trueeeeee'   , this.Au.tipoUserSubject.value  )
+        console.log('RecepAuthGuard      trueeeeee'   , this.Au.tipoUserSubject.value  )
         return true;
       }
 
-      // console.log('RecepAuthGuard      falseeeeee'    )
+      console.log('RecepAuthGuard      falseeeeee'    )
       this.router.navigate([ '/home']);
       return false;
   }

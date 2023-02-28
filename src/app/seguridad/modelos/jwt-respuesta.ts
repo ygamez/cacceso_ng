@@ -5,6 +5,6 @@ export interface JwtRespuesta {
 }
 export interface usuario {
   fullName:string;
-  Usuario: string
+  Usuario: string;
   tipo: string;
 }

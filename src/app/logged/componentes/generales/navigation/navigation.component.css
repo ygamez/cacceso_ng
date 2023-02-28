@@ -41,11 +41,35 @@
   font-size: small;
 }
 
-
-
 .toolbar{
   color: white;
-  background-color: #FF3366;
+  background-color: #dd1749;
   display: flex;
   justify-content: center;
+}
+
+.toolbarcenter{
+  color: white;
+  background-color: #007bff;
+  display: flex;
+  justify-content: center;
+}
+
+.example-button {
+  margin-top: 16px;
+}
+
+.example-tooltip-uppercase {
+  text-transform: uppercase;
+}
+
+li {
+  cursor:pointer;
+}
+
+.form-group[_ngcontent-jji-c216] .form-control-round[_ngcontent-jji-c216] {
+  border-radius: 50px;
+}
+*[_ngcontent-jji-c216], [_ngcontent-jji-c216]::after, [_ngcontent-jji-c216]::before {
+  box-sizing: border-box;
 }

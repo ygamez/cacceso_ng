@@ -19,6 +19,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NavigationResolver } from './seguridad/guard/navigation.resolver';
 import { ReunionesComponent } from './logged/componentes/app/Reunion/reuniones/reuniones.component';
 import { UserAuthGuard } from './seguridad/guard/user-auth.guard';
+import { FormularioComponent } from './logged/componentes/app/formulario/formulario.component';
 
 const routes: Routes = [
 
@@ -41,56 +42,61 @@ const routes: Routes = [
     children: [
        {
            path:'userlinea',
-           canActivate:[Authguard],
+          //  canActivate:[Authguard],
            component: UsuariosLIneaComponent
        },
        {
           path:'addEditReunion',
-          canActivate:[Authguard,UserAuthGuard],
+          // canActivate:[Authguard,UserAuthGuard],
           component: AddReunionComponent
        },
        {
+          path:'formulario',
+          // canActivate:[Authguard,UserAuthGuard],
+          component: FormularioComponent
+       },
+       {
         path:'addEditReunion/:idReunion',
-        canActivate:[Authguard,UserAuthGuard],
+        // canActivate:[Authguard,UserAuthGuard],
         component: AddReunionComponent
        },
        {
         path:'listreunionuser',
-        canActivate:[Authguard,UserAuthGuard],
+        // canActivate:[Authguard,UserAuthGuard],
         component: ListReunionUserComponent
        },
         {
           path:'reuniones',
-          canActivate:[Authguard,RecepAuthGuard],
+          // canActivate:[Authguard,RecepAuthGuard],
           component: ReunionesComponent,
           children:[
             {
               path:'',
-              canActivate:[Authguard,RecepAuthGuard],
+              // canActivate:[Authguard,RecepAuthGuard],
               component:ListReunionesComponent,
              },
              {
               path:':idReunion/:idVisitante/detallesVisitante',
-              canActivate:[Authguard,RecepAuthGuard],
+              // canActivate:[Authguard,RecepAuthGuard],
               component:DetallesVisitanteComponent
              },
              {
               path: ':idReunion/addEditVisitante',
-              canActivate:[Authguard,RecepAuthGuard],
+              // canActivate:[Authguard,RecepAuthGuard],
               component: AddVisitanteComponent,
               children:[{
                 path:'',
-                canActivate:[Authguard,RecepAuthGuard],
+                // canActivate:[Authguard,RecepAuthGuard],
                 component:EquiposComponent,
               }]
              },
              {
               path: ':idReunion/addEditVisitante/:idVisitante',
-              canActivate:[Authguard,RecepAuthGuard],
+              // canActivate:[Authguard,RecepAuthGuard],
               component: AddVisitanteComponent,
               children:[{
                 path:'',
-                canActivate:[Authguard,RecepAuthGuard],
+                // canActivate:[Authguard,RecepAuthGuard],
                 component:EquiposComponent,
               }]
              },

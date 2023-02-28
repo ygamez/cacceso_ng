@@ -26,6 +26,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListReunionUserComponent } from './componentes/app/Reunion/list-reunion-user/list-reunion-user.component';
+import { FormularioComponent } from './componentes/app/formulario/formulario.component';
+import { CardComponent } from './componentes/generales/card/card.component';
 
 
 @NgModule({
@@ -42,6 +44,8 @@ import { ListReunionUserComponent } from './componentes/app/Reunion/list-reunion
     DetallesVisitanteComponent,
     AddReunionComponent,
     ListReunionUserComponent,
+    FormularioComponent,
+    CardComponent,
     ],
   imports: [
     BrowserModule,
